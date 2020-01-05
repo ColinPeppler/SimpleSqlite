@@ -6,6 +6,9 @@
 #include <string.h>
 
 #include "InputBuffer.h"
+#include "Statement.h"
+#include "CommandHandler.h"
+#include "StatementExecutor.h"
 
 #ifndef SQLITE_DB_H
 #define SQLITE_DB_H

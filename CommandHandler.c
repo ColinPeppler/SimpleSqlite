@@ -5,9 +5,9 @@
 #include "CommandHandler.h"
 
 
-MetaCommandResult ExecuteMetaCommand(InputBuffer* inputBuffer) {
+MetaCommandResult execute_meta_command(InputBuffer* inputBuffer) {
     if (strcmp(inputBuffer->buffer, ".exit") == 0) {
-        closeInputBuffer(inputBuffer);
+        close_input_buffer(inputBuffer);
         exit(EXIT_SUCCESS);
     }
     else {
@@ -15,7 +15,7 @@ MetaCommandResult ExecuteMetaCommand(InputBuffer* inputBuffer) {
     }
 }
 
-PreparedStatementResult PrepareStatement(InputBuffer* inputBuffer, Statement* statement) {
+PreparedStatementResult prepare_statement(InputBuffer* inputBuffer, Statement* statement) {
     if (strncmp(inputBuffer->buffer, "insert", 6) == 0) {
         statement->type = STATEMENT_INSERT;
         return PREPARED_STATEMENT_SUCCESS;

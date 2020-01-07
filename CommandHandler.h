@@ -24,9 +24,9 @@ typedef enum {
 } PreparedStatementResult;
 
 // Executes meta commands
-MetaCommandResult ExecuteMetaCommand(InputBuffer* inputBuffer);
+MetaCommandResult execute_meta_command(InputBuffer* inputBuffer);
 
 // Prepare Insert and Select statements
-PreparedStatementResult PrepareStatement(InputBuffer* inputBuffer, Statement* statement);
+PreparedStatementResult prepare_statement(InputBuffer* inputBuffer, Statement* statement);
 
 #endif //SIMPLESQLITE_COMMANDHANDLER_H

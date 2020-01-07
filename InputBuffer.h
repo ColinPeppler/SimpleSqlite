@@ -15,15 +15,15 @@ typedef struct {
 } InputBuffer;
 
 // Constructor
-InputBuffer* CreateInputBuffer();
+InputBuffer* create_input_buffer();
 
 // Prints a prompt to the user
-void printPrompt();
+void print_prompt();
 
 // Reads a line of the user's input
-void readInput(InputBuffer* inputBuffer);
+void read_input(InputBuffer* inputBuffer);
 
 // Free the InputBuffer
-void closeInputBuffer(InputBuffer* inputBuffer);
+void close_input_buffer(InputBuffer* inputBuffer);
 
 #endif //SQLITE_INPUTBUFFER_H

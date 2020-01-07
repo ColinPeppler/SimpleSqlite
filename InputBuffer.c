@@ -5,7 +5,7 @@
 
 #include "InputBuffer.h"
 
-InputBuffer* CreateInputBuffer() {
+InputBuffer* create_input_buffer() {
     InputBuffer* inputBuffer = malloc(sizeof(InputBuffer));
     inputBuffer->buffer = NULL;
     inputBuffer->bufferLength = 0;
@@ -14,9 +14,9 @@ InputBuffer* CreateInputBuffer() {
     return inputBuffer;
 }
 
-void printPrompt() { printf("db > "); }
+void print_prompt() { printf("db > "); }
 
-void readInput(InputBuffer* inputBuffer) {
+void read_input(InputBuffer* inputBuffer) {
     ssize_t bytesRead = getline(&(inputBuffer->buffer), &(inputBuffer->bufferLength), stdin);
 
     if (bytesRead <= 0) {
@@ -29,7 +29,7 @@ void readInput(InputBuffer* inputBuffer) {
     inputBuffer->buffer[bytesRead - 1] = '\0';
 }
 
-void closeInputBuffer(InputBuffer* inputBuffer) {
+void close_input_buffer(InputBuffer* inputBuffer) {
     free(inputBuffer->buffer);
     free(inputBuffer);
 }

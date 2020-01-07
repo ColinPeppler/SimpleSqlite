@@ -10,8 +10,8 @@
 
 typedef struct {
     char* buffer;
-    size_t bufferLength;
-    ssize_t inputLength;
+    size_t buffer_length;
+    ssize_t input_length;
 } InputBuffer;
 
 // Constructor
@@ -21,9 +21,9 @@ InputBuffer* create_input_buffer();
 void print_prompt();
 
 // Reads a line of the user's input
-void read_input(InputBuffer* inputBuffer);
+void read_input(InputBuffer* input_buffer);
 
 // Free the InputBuffer
-void close_input_buffer(InputBuffer* inputBuffer);
+void close_input_buffer(InputBuffer* input_buffer);
 
 #endif //SQLITE_INPUTBUFFER_H

@@ -6,30 +6,30 @@
 #include "InputBuffer.h"
 
 InputBuffer* create_input_buffer() {
-    InputBuffer* inputBuffer = malloc(sizeof(InputBuffer));
-    inputBuffer->buffer = NULL;
-    inputBuffer->bufferLength = 0;
-    inputBuffer->inputLength = 0;
+    InputBuffer* input_buffer = malloc(sizeof(InputBuffer));
+    input_buffer->buffer = NULL;
+    input_buffer->buffer_length = 0;
+    input_buffer->input_length = 0;
 
-    return inputBuffer;
+    return input_buffer;
 }
 
 void print_prompt() { printf("db > "); }
 
-void read_input(InputBuffer* inputBuffer) {
-    ssize_t bytesRead = getline(&(inputBuffer->buffer), &(inputBuffer->bufferLength), stdin);
+void read_input(InputBuffer* input_buffer) {
+    ssize_t bytes_read = getline(&(input_buffer->buffer), &(input_buffer->buffer_length), stdin);
 
-    if (bytesRead <= 0) {
+    if (bytes_read <= 0) {
         printf("Error reading input\n");
         exit(EXIT_FAILURE);
     }
 
     // Ignore trailing newline '\n'
-    inputBuffer->inputLength = bytesRead - 1;
-    inputBuffer->buffer[bytesRead - 1] = '\0';
+    input_buffer->input_length = bytes_read - 1;
+    input_buffer->buffer[bytes_read - 1] = '\0';
 }
 
-void close_input_buffer(InputBuffer* inputBuffer) {
-    free(inputBuffer->buffer);
-    free(inputBuffer);
+void close_input_buffer(InputBuffer* input_buffer) {
+    free(input_buffer->buffer);
+    free(input_buffer);
 }

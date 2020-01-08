@@ -2,7 +2,7 @@
 // Created by Colin Peppler on 1/7/20.
 //
 
-#include "Table.h"
+#include "table.h"
 
 Table* new_table() {
     Table* table = malloc(sizeof(Table));

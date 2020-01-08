@@ -2,7 +2,7 @@
 // Created by Colin Peppler on 1/7/20.
 //
 
-#include "MemoryManager.h"
+#include "memory_manager.h"
 
 void serialize_row(Row* source, void* destination) {
     memcpy(destination + ID_OFFSET, &(source->id), ID_SIZE);

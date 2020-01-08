@@ -2,13 +2,13 @@
 // Created by Colin Peppler on 1/5/20.
 //
 
-#ifndef SIMPLESQLITE_STATEMENTEXECUTOR_H
-#define SIMPLESQLITE_STATEMENTEXECUTOR_H
+#ifndef SIMPLESQLITE_STATEMENT_EXECUTOR_H
+#define SIMPLESQLITE_STATEMENT_EXECUTOR_H
 
 #include <stdint.h>
 
-#include "Statement.h"
-#include "Table.h"
+#include "statement.h"
+#include "table.h"
 
 typedef enum {
     EXECUTE_SUCCESS,
@@ -22,4 +22,4 @@ ExecuteResult execute_insert(Statement* statement, Table* table);
 ExecuteResult execute_select(Statement* statement, Table* table);
 
 
-#endif //SIMPLESQLITE_STATEMENTEXECUTOR_H
+#endif //SIMPLESQLITE_STATEMENT_EXECUTOR_H

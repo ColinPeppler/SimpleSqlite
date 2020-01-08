@@ -2,7 +2,7 @@
 // Created by Colin Peppler on 1/5/20.
 //
 
-#include "CommandHandler.h"
+#include "command_handler.h"
 
 
 MetaCommandResult execute_meta_command(InputBuffer* input_buffer) {

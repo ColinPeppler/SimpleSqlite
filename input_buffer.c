@@ -3,7 +3,7 @@
 
 //
 
-#include "InputBuffer.h"
+#include "input_buffer.h"
 
 InputBuffer* create_input_buffer() {
     InputBuffer* input_buffer = malloc(sizeof(InputBuffer));

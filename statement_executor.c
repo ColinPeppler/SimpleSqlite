@@ -2,7 +2,7 @@
 // Created by Colin Peppler on 1/5/20.
 //
 
-#include "StatementExecutor.h"
+#include "statement_executor.h"
 
 ExecuteResult execute_statement(Statement* statement, Table* table) {
     switch (statement->type) {

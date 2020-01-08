@@ -2,13 +2,13 @@
 // Created by Colin Peppler on 1/8/20.
 //
 
-#ifndef SIMPLESQLITE_MEMORYMANAGER_H
-#define SIMPLESQLITE_MEMORYMANAGER_H
+#ifndef SIMPLESQLITE_MEMORY_MANAGER_H
+#define SIMPLESQLITE_MEMORY_MANAGER_H
 
 #include <stdint.h>
 #include <string.h>
 
-#include "Statement.h"
+#include "statement.h"
 
 // macro to define size of a struct's attribute
 #define size_of_attribute(Struct, Attribute) sizeof(((Struct*)0)->Attribute)
@@ -25,4 +25,4 @@ static const uint32_t ROW_SIZE = ID_SIZE + USERNAME_SIZE + EMAIL_SIZE;
 void serialize_row(Row* source, void* destination);
 void deserialize_row(void* source, Row* destination);
 
-#endif //SIMPLESQLITE_MEMORYMANAGER_H
+#endif //SIMPLESQLITE_MEMORY_MANAGER_H

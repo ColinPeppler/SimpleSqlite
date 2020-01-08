@@ -4,8 +4,8 @@
 
 #include <string.h>
 
-#include "InputBuffer.h"
-#include "Statement.h"
+#include "input_buffer.h"
+#include "statement.h"
 
 #ifndef SIMPLESQLITE_COMMANDHANDLER_H
 #define SIMPLESQLITE_COMMANDHANDLER_H

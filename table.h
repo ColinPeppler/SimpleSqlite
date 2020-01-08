@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include "MemoryManager.h"
+#include "memory_manager.h"
 
 # define TABLE_MAX_PAGES 100
 

@@ -2,7 +2,7 @@
 // Created by Colin Peppler on 1/5/20.
 //
 
-#include "Sqlite.h"
+#include "sqlite.h"
 
 int main(int argc, char* argv[]) {
     Table* table = new_table();

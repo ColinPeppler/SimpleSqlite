@@ -9,6 +9,8 @@
 #include "Statement.h"
 #include "CommandHandler.h"
 #include "StatementExecutor.h"
+#include "MemoryManager.h"
+#include "Table.h"
 
 #ifndef SQLITE_DB_H
 #define SQLITE_DB_H

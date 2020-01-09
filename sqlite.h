@@ -12,6 +12,8 @@
 #include "memory_manager.h"
 #include "table.h"
 
+#define NUM_ARGS 2
+
 #ifndef SQLITE_DB_H
 #define SQLITE_DB_H
 

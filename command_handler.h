@@ -2,15 +2,14 @@
 // Created by Colin Peppler on 1/5/20.
 //
 
+#ifndef SIMPLESQLITE_COMMANDHANDLER_H
+#define SIMPLESQLITE_COMMANDHANDLER_H
+
 #include <string.h>
 
 #include "input_buffer.h"
 #include "statement.h"
-
-#ifndef SIMPLESQLITE_COMMANDHANDLER_H
-#define SIMPLESQLITE_COMMANDHANDLER_H
-
-#define NUM_ARGS 3
+#include "table.h"
 
 typedef enum {
     META_COMMAND_SUCCESS,
@@ -26,9 +25,10 @@ typedef enum {
 } PreparedStatementResult;
 
 // Executes meta commands
-MetaCommandResult execute_meta_command(InputBuffer* input_buffer);
+MetaCommandResult execute_meta_command(InputBuffer* input_buffer, Table* table);
 
 // Prepare Insert and Select statements
 PreparedStatementResult prepare_statement(InputBuffer* input_buffer, Statement* statement);
+PreparedStatementResult prepare_insert(InputBuffer* input_buffer, Statement* statement);
 
 #endif //SIMPLESQLITE_COMMANDHANDLER_H

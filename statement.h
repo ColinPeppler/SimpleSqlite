@@ -25,9 +25,9 @@ typedef struct {
 } Statement;
 
 // Convert a Row struct to a compact memory segment
-void serialize_row(Row* source, void* destination);
+void serialize_row(Row *source, void *destination);
 
 // Convert from a compact memory segment to a Row struct
-void deserialize_row(void* source, Row* destination);
+void deserialize_row(void *source, Row *destination);
 
 #endif //SIMPLESQLITE_STATEMENT_H

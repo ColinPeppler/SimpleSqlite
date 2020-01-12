@@ -5,17 +5,16 @@
 #include "command_handler.h"
 
 
-MetaCommandResult execute_meta_command(InputBuffer* input_buffer, Table* table) {
+MetaCommandResult execute_meta_command(InputBuffer *input_buffer, Table *table) {
     if (strcmp(input_buffer->buffer, ".exit") == 0) {
         db_close(table);
         exit(EXIT_SUCCESS);
-    }
-    else {
+    } else {
         return META_COMMAND_UNRECOGNIZED_COMMAND;
     }
 }
 
-PreparedStatementResult prepare_statement(InputBuffer* input_buffer, Statement* statement) {
+PreparedStatementResult prepare_statement(InputBuffer *input_buffer, Statement *statement) {
     if (strncmp(input_buffer->buffer, "insert", 6) == 0) {
         return prepare_insert(input_buffer, statement);
     }
@@ -27,13 +26,13 @@ PreparedStatementResult prepare_statement(InputBuffer* input_buffer, Statement* 
     return PREPARED_STATEMENT_UNRECOGNIZED_STATEMENT;
 }
 
-PreparedStatementResult prepare_insert(InputBuffer* input_buffer, Statement* statement) {
+PreparedStatementResult prepare_insert(InputBuffer *input_buffer, Statement *statement) {
     statement->type = STATEMENT_INSERT;
 
-    char* keyword = strtok(input_buffer->buffer, " ");
-    char* id_string = strtok(NULL, " ");
-    char* username = strtok(NULL, " ");
-    char* email = strtok(NULL, " ");
+    char *keyword = strtok(input_buffer->buffer, " ");
+    char *id_string = strtok(NULL, " ");
+    char *username = strtok(NULL, " ");
+    char *email = strtok(NULL, " ");
 
     if (id_string == NULL || username == NULL || email == NULL) {
         return PREPARED_STATEMENT_SYNTAX_ERROR;

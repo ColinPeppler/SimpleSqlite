@@ -4,17 +4,17 @@
 
 #include "sqlite.h"
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     if (argc < NUM_ARGS) {
         printf("Must supple a database filename,\n");
         exit(EXIT_FAILURE);
     }
 
-    char* filename = argv[1];
-    Table* table = db_open(filename);
+    char *filename = argv[1];
+    Table *table = db_open(filename);
     InputBuffer *input_buffer = create_input_buffer();
 
-    while(1) {
+    while (1) {
         print_prompt();
         read_input(input_buffer);
 
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
         }
 
         Statement statement;
-        switch(prepare_statement(input_buffer, &statement)) {
+        switch (prepare_statement(input_buffer, &statement)) {
             case (PREPARED_STATEMENT_SUCCESS):
                 break;
             case (PREPARED_STATEMENT_NEGATIVE_ID):
@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
                 continue;
         }
 
-        switch(execute_statement(&statement, table)) {
+        switch (execute_statement(&statement, table)) {
             case (EXECUTE_SUCCESS):
                 printf("Executed.\n");
                 break;

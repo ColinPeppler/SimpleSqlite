@@ -17,20 +17,21 @@ static const uint32_t TABLE_MAX_ROWS = ROWS_PER_PAGE * TABLE_MAX_PAGES;
 
 typedef struct {
     uint32_t num_rows;
-    Pager* pager;
+    Pager *pager;
 } Table;
 
 // Table constructor
-Table* db_open(const char* filename);
+Table *db_open(const char *filename);
 
 // Free the table
-Table* free_table();
-Table* db_close(Table* table);
+Table *free_table();
+
+Table *db_close(Table *table);
 
 // Get the address for a specific table row #
-void* find_row_address(Table* table, uint32_t row_num);
+void *find_row_address(Table *table, uint32_t row_num);
 
 // Print a row
-void print_row(Row* row);
+void print_row(Row *row);
 
 #endif //SIMPLESQLITE_TABLE_H

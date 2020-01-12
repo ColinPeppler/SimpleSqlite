@@ -22,7 +22,8 @@ static const uint32_t EMAIL_OFFSET = USERNAME_OFFSET + USERNAME_SIZE;
 static const uint32_t ROW_SIZE = ID_SIZE + USERNAME_SIZE + EMAIL_SIZE;
 
 // Convert a row to and from a compact memory segment
-void serialize_row(Row* source, void* destination);
-void deserialize_row(void* source, Row* destination);
+void serialize_row(Row *source, void *destination);
+
+void deserialize_row(void *source, Row *destination);
 
 #endif //SIMPLESQLITE_MEMORY_MANAGER_H

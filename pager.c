@@ -2,8 +2,7 @@
 // Created by Colin Peppler on 1/9/20.
 //
 
-#include <zconf.h>
-#include <stdlib.h>
+
 #include "pager.h"
 
 Pager *pager_open(const char *filename) {

@@ -28,10 +28,6 @@ Table *free_table();
 
 Table *db_close(Table *table);
 
-// Get the address for a specific table row #
-void *find_row_address(Table *table, uint32_t row_num);
-
-// Print a row
 void print_row(Row *row);
 
 #endif //SIMPLESQLITE_TABLE_H

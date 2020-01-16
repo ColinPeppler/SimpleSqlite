@@ -8,6 +8,9 @@
 #include <stdint.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <zconf.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 #define TABLE_MAX_PAGES 100
 

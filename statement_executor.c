@@ -19,20 +19,25 @@ ExecuteResult execute_insert(Statement *statement, Table *table) {
     }
 
     Row *row_to_insert = &(statement->row_to_insert);
+    Cursor* cursor = get_end_table_cursor(table);
 
     // insert the row to end of the table
-    serialize_row(row_to_insert, find_row_address(table, table->num_rows));
+    serialize_row(row_to_insert, cursor_value(cursor));
     table->num_rows += 1;
 
     return EXECUTE_SUCCESS;
 }
 
 ExecuteResult execute_select(Statement *statement, Table *table) {
+    Cursor* cursor = get_start_table_cursor(table);
     Row row;
-    for (uint32_t i = 0; i < table->num_rows; i++) {
-        deserialize_row(find_row_address(table, i), &row);
+
+    while (!cursor->is_end_of_table) {
+        deserialize_row(cursor_value(cursor), &row);
         print_row(&row);
+        cursor_advance(cursor);
     }
+    free(cursor);
 
     return EXECUTE_SUCCESS;
 }

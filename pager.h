@@ -19,6 +19,7 @@ static const uint32_t PAGE_SIZE = 4096;
 typedef struct {
     int file_descriptor;
     uint32_t file_length;
+    uint32_t num_pages;
     void *pages[TABLE_MAX_PAGES];
 } Pager;
 
@@ -26,7 +27,7 @@ typedef struct {
 Pager *pager_open(const char *filename);
 
 // Flushes a partial or full page
-void pager_flush(Pager *pager, uint32_t page_num, uint32_t size);
+void pager_flush(Pager *pager, uint32_t page_num);
 
 // Gets a page from file (for cache miss)
 void *get_page(Pager *pager, uint32_t page_num);

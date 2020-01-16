@@ -12,8 +12,9 @@
 
 typedef struct {
     Table* table;
-    uint32_t row_num;
-    bool is_end_of_table;  // Inicates a position one past the last element
+    uint32_t page_num;      // Page # of the node
+    uint32_t cell_num;      // Cell # within node
+    bool is_end_of_table;   // Inicates a position one past the last element
 } Cursor;
 
 // Create new cursors
@@ -26,5 +27,6 @@ void* cursor_value(Cursor* cursor);
 // Increment the number of rows in the table
 void cursor_advance(Cursor* cursor);
 
-// Print a row
+void leaf_node_insert(Cursor* cursor, uint32_t key, Row* value);
+
 #endif //SIMPLESQLITE_CURSOR_H

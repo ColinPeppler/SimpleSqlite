@@ -14,16 +14,15 @@ ExecuteResult execute_statement(Statement *statement, Table *table) {
 }
 
 ExecuteResult execute_insert(Statement *statement, Table *table) {
-    if (table->num_rows >= TABLE_MAX_ROWS) {
+    void* node = get_page(table->pager, table->root_page_num);
+    if ((*leaf_node_num_cells(node)) >= LEAF_NODE_MAX_CELLS) {
         return EXECUTE_TABLE_FULL;
     }
 
     Row *row_to_insert = &(statement->row_to_insert);
     Cursor* cursor = get_end_table_cursor(table);
 
-    // insert the row to end of the table
-    serialize_row(row_to_insert, cursor_value(cursor));
-    table->num_rows += 1;
+    leaf_node_insert(cursor, row_to_insert->id, row_to_insert);
 
     return EXECUTE_SUCCESS;
 }

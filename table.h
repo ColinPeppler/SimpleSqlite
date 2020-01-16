@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <stdint.h>
+#include <zconf.h>
 #include <stdio.h>
 
 #include "memory_manager.h"
@@ -16,9 +17,11 @@ static const uint32_t ROWS_PER_PAGE = PAGE_SIZE / ROW_SIZE;
 static const uint32_t TABLE_MAX_ROWS = ROWS_PER_PAGE * TABLE_MAX_PAGES;
 
 typedef struct {
-    uint32_t num_rows;
     Pager *pager;
+    uint32_t root_page_num;
 } Table;
+
+#include "BTreeNode.h"
 
 // Table constructor
 Table *db_open(const char *filename);

@@ -19,7 +19,9 @@ typedef struct {
 
 // Create new cursors
 Cursor* get_start_table_cursor(Table* table);
-Cursor* get_end_table_cursor(Table* table);
+
+// Find cursor for a table @ an index
+Cursor* table_find(Table* table, uint32_t key);
 
 // Get the address for a specific table row #
 void* cursor_value(Cursor* cursor);
@@ -27,6 +29,10 @@ void* cursor_value(Cursor* cursor);
 // Increment the number of rows in the table
 void cursor_advance(Cursor* cursor);
 
+// Inserting a leaf node into table
 void leaf_node_insert(Cursor* cursor, uint32_t key, Row* value);
+// Finding a value within a leaf node
+Cursor* leaf_node_find(Table* table, uint32_t page_num, uint32_t target_key);
+
 
 #endif //SIMPLESQLITE_CURSOR_H

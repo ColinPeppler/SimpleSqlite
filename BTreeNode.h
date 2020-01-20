@@ -15,7 +15,7 @@
 typedef enum {
     NODE_INTERNAL,
     NODE_LEAF
-} BTreeNode;
+} BTreeNodeType;
 
 // Node Header Layout
 static const uint32_t NODE_TYPE_SIZE = sizeof(uint8_t);
@@ -47,5 +47,12 @@ uint32_t* leaf_node_key(void* node, uint32_t cell_num);
 void* leaf_node_value(void* node, uint32_t cell_num);
 void initialize_leaf_node(void* node);
 
+
+// Getter/Setter for node type
+BTreeNodeType get_node_type(void* node);
+void set_node_type(void* node, BTreeNodeType type);
+
+// Helper
+uint32_t binary_search(void* node, uint32_t target_key);
 
 #endif //SIMPLESQLITE_BTREENODE_H

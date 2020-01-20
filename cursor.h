@@ -31,6 +31,7 @@ void cursor_advance(Cursor* cursor);
 
 // Inserting a leaf node into table
 void leaf_node_insert(Cursor* cursor, uint32_t key, Row* value);
+void leaf_node_split_and_insert(Cursor* cursor, uint32_t key, Row* value);
 // Finding a value within a leaf node
 Cursor* leaf_node_find(Table* table, uint32_t page_num, uint32_t target_key);
 

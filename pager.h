@@ -32,4 +32,7 @@ void pager_flush(Pager *pager, uint32_t page_num);
 // Gets a page from file (for cache miss)
 void *get_page(Pager *pager, uint32_t page_num);
 
+// Finds an open page
+uint32_t get_unused_page_num(Pager* pager);
+
 #endif //SIMPLESQLITE_PAGER_H

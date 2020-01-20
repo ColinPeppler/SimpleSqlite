@@ -21,7 +21,7 @@ typedef struct {
     uint32_t root_page_num;
 } Table;
 
-#include "BTreeNode.h"
+#include "BTree.h"
 
 // Table constructor
 Table *db_open(const char *filename);

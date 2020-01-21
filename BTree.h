@@ -93,7 +93,8 @@ uint32_t get_node_max_key(void *node);
 uint32_t* node_parent(void* node);
 
 // Helper
-uint32_t binary_search(void* node, uint32_t target_key);
+uint32_t binary_search_leaf(void* node, uint32_t target_key);
+
 
 // Print BTree
 void indent(uint32_t level);

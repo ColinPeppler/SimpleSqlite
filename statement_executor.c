@@ -16,9 +16,9 @@ ExecuteResult execute_statement(Statement *statement, Table *table) {
 ExecuteResult execute_insert(Statement *statement, Table *table) {
     Row *row_to_insert = &(statement->row_to_insert);
     uint32_t key_to_insert = row_to_insert->id;
-    Cursor* cursor = table_find(table, key_to_insert);
+    Cursor *cursor = table_find(table, key_to_insert);
 
-    void* node = get_page(table->pager, table->root_page_num);
+    void *node = get_page(table->pager, table->root_page_num);
     uint32_t num_cells = *leaf_node_num_cells(node);
 
     if (cursor->cell_num < num_cells) {
@@ -35,7 +35,7 @@ ExecuteResult execute_insert(Statement *statement, Table *table) {
 }
 
 ExecuteResult execute_select(Statement *statement, Table *table) {
-    Cursor* cursor = get_start_table_cursor(table);
+    Cursor *cursor = get_start_table_cursor(table);
     Row row;
 
     while (!cursor->is_end_of_table) {

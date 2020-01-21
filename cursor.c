@@ -5,13 +5,10 @@
 #include "cursor.h"
 
 Cursor* get_start_table_cursor(Table* table) {
-    Cursor* cursor = malloc(sizeof(Cursor));
-    cursor->table = table;
-    cursor->page_num = table->root_page_num;
-    cursor->cell_num = 0;
+    Cursor* cursor = table_find(table, 0);
 
-    void* root_node = get_page(table->pager, table->root_page_num);
-    uint32_t num_cells = *leaf_node_num_cells(root_node);
+    void* node = get_page(table->pager, cursor->page_num);
+    uint32_t num_cells = *leaf_node_num_cells(node);
     cursor->is_end_of_table = (num_cells == 0);
 
     return cursor;
@@ -21,13 +18,11 @@ Cursor* table_find(Table* table, uint32_t key) {
     uint32_t root_page_num = table->root_page_num;
     void* root_node = get_page(table->pager, root_page_num);
 
-    if (get_node_type(root_node) == NODE_LEAF) {
-        return leaf_node_find(table, root_page_num, key);
-    }
-    else {
-        // TODO: imple,ent searching an interanl node
-        printf("Too implement\n");
-        exit(EXIT_FAILURE);
+    switch (get_node_type(root_node)) {
+        case (NODE_LEAF):
+            return leaf_node_find(table, root_page_num, key);
+        default:
+            return internal_node_find(table, root_page_num, key);
     }
 }
 
@@ -44,6 +39,14 @@ void cursor_advance(Cursor* cursor){
 
     cursor->cell_num += 1;
     if (cursor->cell_num >= (*leaf_node_num_cells(node))) {
-        cursor->is_end_of_table = true;
+        // Advanced to the next leaf node if there is one
+        uint32_t next_page_num = *leaf_node_next_leaf(node);
+        if (next_page_num == 0) {
+            cursor->is_end_of_table = true;
+
+        } else {
+            cursor->page_num = next_page_num;
+            cursor->cell_num = 0;
+        }
     }
 }

@@ -3,6 +3,7 @@
 //
 
 #include "memory_manager.h"
+#include <stdio.h>
 
 void serialize_row(Row *source, void *destination) {
     memcpy(destination + ID_OFFSET, &(source->id), ID_SIZE);

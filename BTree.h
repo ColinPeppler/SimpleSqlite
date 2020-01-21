@@ -12,6 +12,8 @@
 #include "memory_manager.h"
 #include "cursor.h"
 
+#define NO_SIBLING 0
+
 // Each node will represent one page
 typedef enum {
     NODE_INTERNAL,
@@ -30,7 +32,9 @@ static const uint32_t COMMON_NODE_HEADER_SIZE = NODE_TYPE_SIZE + IS_ROOT_SIZE + 
 // Leaf Node Header Layout
 static const uint32_t LEAF_NODE_NUM_CELLS_SIZE = sizeof(uint32_t);
 static const uint32_t LEAF_NODE_NUM_CELLS_OFFSET = COMMON_NODE_HEADER_SIZE;
-static const uint32_t LEAF_NODE_HEADER_SIZE = COMMON_NODE_HEADER_SIZE + LEAF_NODE_NUM_CELLS_SIZE;
+static const uint32_t LEAF_NODE_NEXT_LEAF_SIZE = sizeof(uint32_t);
+static const uint32_t LEAF_NODE_NEXT_LEAF_OFFSET = LEAF_NODE_NUM_CELLS_OFFSET + LEAF_NODE_NUM_CELLS_SIZE;
+static const uint32_t LEAF_NODE_HEADER_SIZE = COMMON_NODE_HEADER_SIZE + LEAF_NODE_NUM_CELLS_SIZE + LEAF_NODE_NEXT_LEAF_SIZE;
 
 // Leaf Node Body Layout
 static const uint32_t LEAF_NODE_KEY_SIZE = sizeof(uint32_t);
@@ -43,7 +47,6 @@ static const uint32_t LEAF_NODE_MAX_CELLS = LEAF_NODE_SPACE_FOR_CELLS / LEAF_NOD
 // Leaf Node Split Counts
 static const uint32_t LEAF_NODE_RIGHT_SPLIT_COUNT = (LEAF_NODE_MAX_CELLS + 1) / 2;
 static const uint32_t LEAF_NODE_LEFT_SPLIT_COUNT = (LEAF_NODE_MAX_CELLS + 1) - LEAF_NODE_RIGHT_SPLIT_COUNT;
-
 
 // Internal Node Header Layout
 static const uint32_t INTERNAL_NODE_NUM_KEYS_SIZE = sizeof(uint32_t);
@@ -58,7 +61,6 @@ static const uint32_t INTERNAL_NODE_KEY_SIZE = sizeof(uint32_t);
 static const uint32_t INTERNAL_NODE_CHILD_SIZE = sizeof(uint32_t);
 static const uint32_t INTERNAL_NODE_CELL_SIZE = INTERNAL_NODE_CHILD_SIZE + INTERNAL_NODE_KEY_SIZE;
 static const uint32_t INTERNAL_NODE_MAX_CELLS = 3;
-
 
 // Value Accessing methods
 uint32_t* leaf_node_num_cells(void* node);
@@ -95,6 +97,14 @@ uint32_t* node_parent(void* node);
 // Helper
 uint32_t binary_search_leaf(void* node, uint32_t target_key);
 
+// Accessing next leaf
+uint32_t* leaf_node_next_leaf(void* node);
+
+// Update key of an internal node
+void update_internal_node_key(void* node, uint32_t old_key, uint32_t new_key);
+
+// Insert a new internal node
+void internal_node_insert(Table* table, uint32_t parent_page_num, uint32_t child_page_num);
 
 // Print BTree
 void indent(uint32_t level);
